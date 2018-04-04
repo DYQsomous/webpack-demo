@@ -1,3 +1,4 @@
+require('./main.css')
 var sub = require('./sub');
 var app = document.createElement('div');
 

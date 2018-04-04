@@ -21,5 +21,14 @@ module.exports = {
     hot: true,
     inline: true,
     progress: true
+  },
+  module: {
+    loaders: [
+      {
+        test: /\.css$/,
+        loaders: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
+        include: APP_PATH
+      }
+    ]
   }
 }
