@@ -28,6 +28,11 @@ module.exports = {
         test: /\.scss$/,
         loaders: [{ loader: 'style-loader' }, { loader: 'css-loader' }, { loader: 'sass-loader'}],
         include: APP_PATH
+      },
+      {
+        test: /\.(jpg|png)$/,
+        loaders: [{ loader: 'url-loader?limit=40000' }],
+        include: APP_PATH
       }
     ]
   }

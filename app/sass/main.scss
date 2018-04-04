@@ -1,4 +1,7 @@
 @import './variables.scss';
+body {
+  background-image: url('../img/moby.jpg');
+}
 
 h2 {
   color: $red;
