@@ -25,8 +25,8 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.css$/,
-        loaders: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
+        test: /\.scss$/,
+        loaders: [{ loader: 'style-loader' }, { loader: 'css-loader' }, { loader: 'sass-loader'}],
         include: APP_PATH
       }
     ]

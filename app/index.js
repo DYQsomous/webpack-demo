@@ -1,4 +1,4 @@
-require('./main.css')
+require('./sass/main.scss')
 var sub = require('./sub');
 var app = document.createElement('div');
 
