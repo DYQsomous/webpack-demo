@@ -1,8 +1,9 @@
 @import './variables.scss';
-body {
-  background-image: url('../img/moby.jpg');
-}
 
-h2 {
-  color: $red;
+body {
+  background-image: url('../img/moby2.jpg');
+  background-size: cover;
+  h1 {
+    color: $red;
+  }
 }
