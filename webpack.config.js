@@ -15,5 +15,11 @@ module.exports = {
     new HtmlwebPackagePlugin ({
       title: 'Hello Word App'
     })
-  ]
+  ],
+  devServer: {
+    historyApiFallback: true,
+    hot: true,
+    inline: true,
+    progress: true
+  }
 }
