@@ -1,6 +1,7 @@
 var path = require('path');
-var HtmlwebPackagePlugin = require('html-webpack-plugin');
 var webpack = require('webpack');
+var HtmlwebPackagePlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var ROOT_PATH = path.resolve(__dirname);
 var APP_PATH = path.resolve(ROOT_PATH, 'app');

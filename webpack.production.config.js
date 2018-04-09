@@ -1,6 +1,8 @@
 var path = require('path');
-var HtmlwebPackagePlugin = require('html-webpack-plugin');
 var webpack = require('webpack');
+var CleanWebpackPlugin = require('clean-webpack-plugin');
+var HtmlwebPackagePlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var ROOT_PATH = path.resolve(__dirname);
 var APP_PATH = path.resolve(ROOT_PATH, 'app');
@@ -18,6 +20,7 @@ module.exports = {
     filename: '[name].[hash].js'
   },
   plugins: [
+    new CleanWebpackPlugin(['build']),
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendors',
@@ -38,19 +41,22 @@ module.exports = {
       template: path.resolve(TEMP_PATH, 'mobile.html'),
       filename: 'mobile.html',
       chunks: ['mobile', 'vendors']
-    })
-
+    }),
+    new ExtractTextPlugin('bundle.[hash].css'),
   ],
   module: {
     loaders: [
       {
         test: /\.scss$/,
-        loaders: [{ loader: 'style-loader' }, { loader: 'css-loader' }, { loader: 'sass-loader'}],
-        include: APP_PATH
+        include: APP_PATH,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'sass-loader']
+        })
       },
       {
         test: /\.(jpg|png)$/,
-        loaders: [{ loader: 'url-loader?limit=40000' }],
+        loaders: [{ loader: 'url-loader' }],
         include: APP_PATH
       }
     ]
