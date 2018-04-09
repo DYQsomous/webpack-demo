@@ -1,0 +1,1 @@
+webpackJsonp([1],{127:function(n,e,o){(function(n,e){o(125);var d=o(126),p=document.createElement("div");p.innerHTML="<h1>Hello Word</h1>",p.appendChild(d()),document.body.appendChild(p),n("body").append("<p>look at me! now is "+e().format()+"</p>")}).call(e,o(1),o(0))}},[127]);
