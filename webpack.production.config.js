@@ -21,20 +21,10 @@ module.exports = {
       name: 'vendors',
       filename: 'vendors.js'
     }),
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      moment: 'moment'
-    }),
     new HtmlwebPackagePlugin ({
       title: 'Hello Word App'
     })
   ],
-  devServer: {
-    historyApiFallback: true,
-    hot: true,
-    inline: true,
-    progress: true
-  },
   module: {
     loaders: [
       {
