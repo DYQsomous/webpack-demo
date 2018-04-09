@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var CleanWebpackPlugin = require('clean-webpack-plugin');
 var HtmlwebPackagePlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -18,7 +19,14 @@ module.exports = {
     path: BUILD_PATH,
     filename: '[name].[hash].js'
   },
+  devServer: {
+    historyApiFallback: true,
+    hot: true,
+    inline: true,
+    progress: true
+  },
   plugins: [
+    new CleanWebpackPlugin(['build']),
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendors',
@@ -39,21 +47,18 @@ module.exports = {
       template: path.resolve(TEMP_PATH, 'mobile.html'),
       filename: 'mobile.html',
       chunks: ['mobile', 'vendors']
-    })
-
+    }),
+    new ExtractTextPlugin('bundle.[hash].css'),
   ],
-  devServer: {
-    historyApiFallback: true,
-    hot: true,
-    inline: true,
-    progress: true
-  },
   module: {
     loaders: [
       {
         test: /\.scss$/,
-        loaders: [{ loader: 'style-loader' }, { loader: 'css-loader' }, { loader: 'sass-loader'}],
-        include: APP_PATH
+        include: APP_PATH,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'sass-loader']
+        })
       },
       {
         test: /\.(jpg|png)$/,
